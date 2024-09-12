@@ -1,0 +1,20 @@
+version: '3.8'
+
+services:
+  backend:
+    build:
+      context: /root/InteLEAD_backend_redis_celery_dev
+      dockerfile: Dockerfile
+    volumes:
+      - .:/app  # Mount the root directory to /app in the container
+    ports:
+      - "8000:8000"
+    env_file:
+      - backend/.env
+    networks:
+      - app_network
+    container_name: backend
+
+networks:
+  app_network:
+    driver: bridge
